@@ -1,0 +1,60 @@
+.bg-red {
+  background: #c35;
+  float: left;
+  display: block;
+  margin-top:-10px;
+  margin-left:50px;
+  border: 0;
+  padding: 20px;
+  font: 26px/20px 'Timeis', Verdana-Bold, 'HelveticaNeue-CondensedBlack', 'Avenir-Black', 'Arial-BoldMT', Arial, sans-serif;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.bg-red a {
+  color: #fff;
+  transition: background .2s ease;
+  -moz-transition: background .2s ease;
+}
+
+.weather {
+  font-size:380px;
+  line-height: 380px;
+  font-weight: bold;
+}
+
+
+.settings {
+    width: 20px;
+    transition: transform 1s;
+}
+
+.settings:hover {
+    transform: rotate(90deg);
+    transition: transform 1s;
+}
+
+.settings:active {
+    transform: rotate(360deg);
+    transition: transform 1s;
+}
+
+#Sets {
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+#settings-popup {
+  display:none;
+}
+
+.bg-trans {
+  z-index:1;
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  background: rgba(200,200,200,0.9);
+}
