@@ -21,7 +21,6 @@ class Regions extends Component {
     };
   }
 
-
   //additional funcs
   getValidationState() {
     if (this.state.info.cod === 200) {
@@ -31,15 +30,14 @@ class Regions extends Component {
     }
   }
 
-
   handleChange(e) {
-    let tv=e.target.value;
+    let tv = e.target.value;
     this.setState({value: tv});
     //checkCity('http://api.openweathermap.org/data/2.5/weather?q='+e.target.value+'&appid=f1ca3d209100fe1ac19e5efcfd9033cf',this);
     if (this.timeoutVar) {
       clearTimeout(this.timeoutVar);
     }
-      this.timeoutVar = setTimeout(()=>parseRegionData(tv,this,this.props.apiKey),2000);
+    this.timeoutVar = setTimeout(() => parseRegionData(tv, this, this.props.apiKey), 2000);
   }
 
   //we return data to parent via callback
@@ -50,19 +48,27 @@ class Regions extends Component {
     }
   }
 
-
   //Built--in functions
   componentDidMount() {
-    let city=this.props.city;
+    let city = this.props.city;
     if (city) {
-        this.state.value=city;
-        parseRegionData(city,this,this.props.apiKey);
+      this.state.value = city;
+      parseRegionData(city, this, this.props.apiKey);
     }
   }
 
   //upon updating, pass to parent
   componentDidUpdate() {
-      this.passToParent();
+    //first, we pass our data to app, so that it can draw weather
+    this.passToParent();
+    //then we pass wind to window, so that sketch can properly use wind force
+    if (this.state.info.main) {
+      window.wind = this.state.info.wind.speed;
+    }
+    //and then we change title of our page, so that ppl could see temperature just by looking at page titile in tabs
+    document.title = this.state.info.main
+      ? Math.round(this.state.info.main.temp) + String.fromCharCode(8451)
+      : "No data";
   }
 
   render() {

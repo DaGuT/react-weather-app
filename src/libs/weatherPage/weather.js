@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import $ from "jquery";
 import "./weather.css"
 import Regions from "../regions/regions.js"
+import "../forest/sketch.js"
 
 class Weather extends Component {
   constructor() {
@@ -45,8 +46,8 @@ class Weather extends Component {
         </ul>
       </nav>
 
-      <div className="container weather text-center">
-        <span id="degrees">{this.state.info.main ? this.state.info.main.temp : "ops"}</span>&#8451;
+      <div className="container-fluid weather text-center">
+        <span id="degrees">{this.state.info.main ? Math.round(this.state.info.main.temp) : "ops"}</span>&#8451;
       </div>
 
       <div id="settings-popup" >

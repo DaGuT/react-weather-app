@@ -4,6 +4,6 @@ export function parseRegionData(cityName,parent,apiKey) {
         return response.json();
     }).then(json => {
       if (parent.state.info!=json) parent.setState({'info':json});
-      console.log('parsed');
+      //console.log('parsed');
     });
 }

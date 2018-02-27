@@ -24,15 +24,16 @@ const sketch = (p5) => {
   //here we draw everything
   p5.draw = () => {
 
-    //color changing stuff
-    if (color >= 255) {
-      sign *= -1;
-    }
-    if (color <= 0) {
-      sign *= -1;
-    }
-    color += sign;
-    p5.background(color);
+    // //color changing stuff
+    // if (color >= 255) {
+    //   sign *= -1;
+    // }
+    // if (color <= 0) {
+    //   sign *= -1;
+    // }
+    // color += sign;
+    // p5.background(color);
+    p5.background(255);
 
     //we redraw forest everyframe
     forest.draw();
