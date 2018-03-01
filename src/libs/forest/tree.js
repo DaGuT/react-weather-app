@@ -48,9 +48,11 @@ function Tree(x,y,width,height,sprite) {
     }
 
     //in case of resize of canvas we also resize trees and update their positions
-    this.resize = function(newx,newy) {
-      this.width=newx;
-      this.height=newy;
+    this.resize = function(newx,newy,newwidth,newheight) {
+      this.width=newwidth;
+      this.height=newheight;
+      this.x=newx;
+      this.y=newy;
     }
 
     //to make tree move we need to make hard transformation and then draw it

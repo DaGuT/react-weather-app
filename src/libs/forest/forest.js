@@ -12,6 +12,10 @@ export default function Forest(maxTrees) {
   this.forest = [];
   this.maxTrees = maxTrees || 2;
 
+  //old size of canvas, so that we can calculate new position and size of our forest
+  this.oldWidth = p5.width;
+  this.oldHeight = p5.height;
+
   this.create = function() {
     this.forest = [];
     for (let i = 0; i < this.maxTrees; ++i) {
@@ -34,7 +38,16 @@ export default function Forest(maxTrees) {
 
   this.resize = function() {
     for (let i = 0; i < this.maxTrees; ++i) {
-      this.forest[i].resize(100, 100);
+      //just to make it clear visible
+      let tree=this.forest[i];
+      let newHeight=0;
+      let newWidth=0;
+      let newX=0;
+      let newY=0;
+      this.forest[i].resize(newX, newY,newWidth,newHeight);
+
+      this.oldWidth=p5.width;
+      this.oldHeight=p5.height;
     }
   }
 

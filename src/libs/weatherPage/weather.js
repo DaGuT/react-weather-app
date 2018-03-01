@@ -47,7 +47,7 @@ class Weather extends Component {
       </nav>
 
       <div className="container-fluid weather text-center">
-        <span id="degrees">{this.state.info.main ? Math.round(this.state.info.main.temp) : "ops"}</span>&#8451;
+        <span id="degrees">{this.state.info.list ? Math.round(this.state.info.list[0].main.temp) : "ops"}</span>&#8451;
       </div>
 
       <div id="settings-popup" >

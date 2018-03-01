@@ -19,6 +19,8 @@ class Regions extends Component {
         cod: 200
       }
     };
+
+    this.parserInterval=setInterval(()=>{parseRegionData(this.state.value, this, this.props.apiKey)},1800*1000);
   }
 
   //additional funcs
@@ -66,8 +68,8 @@ class Regions extends Component {
       window.wind = this.state.info.wind.speed;
     }
     //and then we change title of our page, so that ppl could see temperature just by looking at page titile in tabs
-    document.title = this.state.info.main
-      ? Math.round(this.state.info.main.temp) + String.fromCharCode(8451)
+    document.title = this.state.info.list
+      ? Math.round(this.state.info.list[0].main.temp) + String.fromCharCode(8451)
       : "No data";
   }
 
