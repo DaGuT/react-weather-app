@@ -1,7 +1,7 @@
 export let
     selectCityText="Введине название города",
     windSpeed=["Ветер: ","м\с"],
-    WindDir="Направление ветра: ",
+    windDir="Направление ветра: ",
     seaLevel="Уровень воды: ",
     pressure="Давление: ",
     humidity="Влажность: ",

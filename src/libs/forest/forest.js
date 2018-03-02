@@ -12,11 +12,17 @@ export default function Forest(maxTrees) {
   this.forest = [];
   this.maxTrees = maxTrees || 2;
 
+  //we set maximum tree height by that, because line height is #380px and #66px is navbar. Now our trees do not overlap with text
+  //Actually, it's always gonna be 380, but it's fine. Id ont want to change it as I like how it looks. 
+  let lineHeight = document.getElementsByClassName('weather').length !== 0
+    ? parseInt(document.getElementsByClassName('weather')[0].style.height)
+    : 380;
+  let maxTreeHeight = window.innerHeight - lineHeight - 66;
+
   this.create = function() {
     this.forest = [];
     for (let i = 0; i < this.maxTrees; ++i) {
-      //we set maximum treeSize by that, because line height is 380px and 66px is navbar. Now our trees do not overlap with text
-      let treeHeight = p5.random(p5.height / 6, p5.height - 380 - 66);
+      let treeHeight = p5.random(maxTreeHeight / 6, maxTreeHeight);
       this.forest.push(new Tree(p5.random(0, p5.width * 3 / 4), 0, treeHeight * 0.871, treeHeight, tree1));
     }
   }
@@ -35,7 +41,7 @@ export default function Forest(maxTrees) {
   this.resize = function() {
     for (let i = 0; i < this.maxTrees; ++i) {
       //just to make it clear visible
-      let tree=this.forest[i];
+      let tree = this.forest[i];
       tree.resize();
     }
   }

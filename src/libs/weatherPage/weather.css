@@ -11,17 +11,17 @@
   letter-spacing: 2px;
 }
 
-.bg-red a {
-  color: #fff;
-  transition: background .2s ease;
-  -moz-transition: background .2s ease;
+
+a[class*="bg-red"]  {
+  color: #fff !important;
+  transition: color .4s ease;
+  -moz-transition: color .4s ease;
 }
 
-.weather {
-  font-size:380px;
-  line-height: 380px;
-  font-weight: bold;
-  color:black;
+a[class*="bg-red"]:hover  {
+  color: #000 !important;
+  transition: color .4s ease;
+  -moz-transition: color .4s ease;
 }
 
 
@@ -44,6 +44,9 @@
   padding: 0;
   border: none;
   background: none;
+  position:absolute;
+  left:300px;
+  top:20px;
 }
 
 #settings-popup {
@@ -58,4 +61,30 @@
   right:0;
   bottom:0;
   background: rgba(200,200,200,0.9);
+}
+
+.weather {
+  font-size:380px;
+  line-height: 380px;
+  font-weight: bold;
+  color:black;
+}
+
+@media (max-width:1007px) {
+  .weather {
+    font-size:280px;
+    line-height: 280px;
+  }
+}
+@media (max-width:750px) {
+  .weather {
+    font-size:180px;
+    line-height: 180px;
+  }
+}
+@media (max-width:483px) {
+  .weather {
+    font-size:100px;
+    line-height: 100px;
+  }
 }

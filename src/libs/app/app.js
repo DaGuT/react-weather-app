@@ -6,16 +6,16 @@ class App extends Component {
   render() {
     return (
 
-          //u can put more info inside of that array to display them by default
+          //u can put more info inside of that array to display them by default. NOTE! It's case sensitive
           //available items:
           //windSpeed
-          //WindForce
+          //windDir
           //seaLevel
           //pressure
           //humidity
           //clouds
           //snow||rain
-          <Weather apiKey='2c84f4e22d32fcf93b9cbe13612db96a' moreInfo={[]} />
+          <Weather apiKey='2c84f4e22d32fcf93b9cbe13612db96a' moreInfo={['windSpeed','windDir','seaLevel','pressure','humidity','clouds','snow']} />
 
     );
   }
