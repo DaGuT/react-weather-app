@@ -26,7 +26,7 @@ class Regions extends Component {
 
   //additional funcs
   getValidationState() {
-    if (this.state.info.cod === 200) {
+    if (this.state.info.list) {
       return 'success';
     } else {
       return 'error';
