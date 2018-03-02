@@ -4,30 +4,44 @@ import $ from "jquery";
 import "./weather.css"
 import Regions from "../regions/regions.js"
 import "../forest/sketch.js"
+import * as langs from "../languages"
 
 class Weather extends Component {
   constructor() {
 
     super();
 
-    this.state= {
-      info:{
-        main:{}
+    //this is for settings default language
+    let userLang = navigator.languages && navigator.languages[0] || // Chrome / Firefox
+                    navigator.language || // All browsers
+                    navigator.userLanguage; // IE <= 10
+    //we need only two first letters
+    window.curLang = userLang.substring(0, 2);
+    //and we check if we have that language
+    //if we dont, we switch to english
+    if (!langs[window.curLang]) {
+      window.curLang='en';
+    }
+
+    this.state = {
+      info: {
+        main: {}
       }
     }
+    console.log(langs);
   }
-
 
   //make settings work
   settings() {
-      $("#settings-popup").toggle();
+    $("#settings-popup").toggle();
   }
 
   getWeather = (data) => {
     //we change only upon some change
-    if (this.state.info!=data) this.setState({'info':data});
-    //$('#degrees').innerHTML=data.main.temp===undefined ? 'ops' : data.main.temp;
-  }
+    if (this.state.info != data)
+      this.setState({'info': data});
+      //$('#degrees').innerHTML=data.main.temp===undefined ? 'ops' : data.main.temp;
+    }
 
   render() {
     return (<div className="Weather">
@@ -47,11 +61,15 @@ class Weather extends Component {
       </nav>
 
       <div className="container-fluid weather text-center">
-        <span id="degrees">{this.state.info.list ? Math.round(this.state.info.list[0].main.temp) : "ops"}</span>&#8451;
+        <span id="degrees">{
+            this.state.info.list
+              ? Math.round(this.state.info.list[0].main.temp)
+              : "ops"
+          }</span>&#8451;
       </div>
 
-      <div id="settings-popup" >
-          <div className="bg-trans" onClick={this.settings}></div>
+      <div id="settings-popup">
+        <div className="bg-trans" onClick={this.settings}></div>
         <Regions cb={this.getWeather} city="Tomsk" apiKey={this.props.apiKey}/>
       </div>
 

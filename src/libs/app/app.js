@@ -6,7 +6,16 @@ class App extends Component {
   render() {
     return (
 
-          <Weather apiKey='2c84f4e22d32fcf93b9cbe13612db96a' />
+          //u can put more info inside of that array to display them by default
+          //available items:
+          //windSpeed
+          //WindForce
+          //seaLevel
+          //pressure
+          //humidity
+          //clouds
+          //snow||rain
+          <Weather apiKey='2c84f4e22d32fcf93b9cbe13612db96a' moreInfo={[]} />
 
     );
   }

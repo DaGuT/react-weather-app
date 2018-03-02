@@ -3,6 +3,7 @@ import {parseRegionData} from "./parser";
 import "./regions.css";
 import {FormGroup, FormControl, ControlLabel} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import * as langs from "../languages"
 
 class Regions extends Component {
   constructor() {
@@ -78,7 +79,7 @@ class Regions extends Component {
     return (<div className="Regions">
       <form>
         <FormGroup controlId="formBasicText" validationState={this.getValidationState()}>
-          <ControlLabel>Please, write your city name here</ControlLabel>
+          <ControlLabel>{langs[window.curLang].selectCityText}</ControlLabel>
           <FormControl type="text" value={this.state.value} placeholder="City name" onChange={this.handleChange}/>
           <FormControl.Feedback/>
         </FormGroup>
