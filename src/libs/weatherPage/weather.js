@@ -64,7 +64,8 @@ class Weather extends Component {
     if (infoName === "clouds")
       return this.state.info.list[listNum].clouds.all;
     if (infoName === "snow")
-      return this.state.info.list[listNum].snow['3h'];
+      //there might be no snow
+      if (this.state.info.list[listNum].snow)  return this.state.info.list[listNum].snow['3h'];
       //if (infoName === "rain") return Math.round(this.state.info.list[listNum].main.temp);
 
     }
