@@ -15,7 +15,7 @@ class App extends Component {
           //humidity
           //clouds
           //snow||rain
-          <Weather apiKey='2c84f4e22d32fcf93b9cbe13612db96a' moreInfo={['windSpeed','windDir','seaLevel','pressure','humidity','clouds','snow']} />
+          <Weather apiKey='2c84f4e22d32fcf93b9cbe13612db96a' moreInfo={['windSpeed','windDir','seaLevel','pressure','humidity','clouds','snow','rain']} />
 
     );
   }

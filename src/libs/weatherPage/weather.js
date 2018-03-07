@@ -63,12 +63,19 @@ class Weather extends Component {
       return Math.round(this.state.info.list[listNum].main.humidity);
     if (infoName === "clouds")
       return this.state.info.list[listNum].clouds.all;
-    if (infoName === "snow")
+    if (infoName === "snow") {
       //there might be no snow
-      if (this.state.info.list[listNum].snow)  return this.state.info.list[listNum].snow['3h'];
-      //if (infoName === "rain") return Math.round(this.state.info.list[listNum].main.temp);
-
+      if (this.state.info.list[listNum].snow)
+        //due to json fancyness we should do this trick
+        return this.state.info.list[listNum].snow['3h'] ? this.state.info.list[listNum].snow['3h'] : 0;
     }
+    if (infoName === "rain") {
+      //there might be no rain
+      if (this.state.info.list[listNum].rain)
+        return this.state.info.list[listNum].rain['3h'] ? this.state.info.list[listNum].rain['3h'] : 0;
+    }
+
+  }
 
   getWeather = (data) => {
     //we change only upon some change
@@ -86,13 +93,14 @@ class Weather extends Component {
     //little hack with scope so that we will not have to pass 'this' to addItem
     let that = this;
     function addItem(name, i) {
-
+      console.log(name);
       if (name === "windSpeed")
+        //why is KEY being removed from here upon compilation? :(
         return (<li className="nav-item" key={name}>
           {langs[window.curLang][name][0] + that.getInfo('windSpeed') + langs[window.curLang][name][1]}
         </li>);
 
-      if (name === "windDir" || name === "seaLevel" || name === "pressure" || name === "humidity" || name === "clouds" || name === "snow")
+      if (name === "windDir" || name === "seaLevel" || name === "pressure" || name === "humidity" || name === "clouds" || name === "snow" || name === "rain")
         return (<li className="nav-item" key={name}>
           {langs[window.curLang][name] + that.getInfo(name)}
         </li>);
