@@ -4,6 +4,7 @@ import "./regions.css";
 import {FormGroup, FormControl, ControlLabel} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as langs from "../languages"
+import Favico from "favico.js"
 
 class Regions extends Component {
   constructor(props) {
@@ -24,6 +25,10 @@ class Regions extends Component {
     this.parserInterval = setInterval(() => {
       parseRegionData(this.state.value, this, this.props.apiKey)
     }, 1800 * 1000);
+
+    this.favicon=new Favico({
+      animation:'fade'
+    });
   }
 
   //--------------------additional funcs
@@ -77,9 +82,14 @@ class Regions extends Component {
       window.wind = this.state.info.wind.speed;
     }
     //and then we change title of our page, so that ppl could see temperature just by looking at page titile in tabs
-    document.title = this.state.info.list
+    let temp=this.state.info.list
       ? Math.round(this.state.info.list[0].main.temp) + String.fromCharCode(8451)
       : "No data";
+    //title
+    document.title = temp;
+    //favicon
+    this.favicon.badge(temp.slice(0,-1));
+
   }
 
   render() {

@@ -7,6 +7,7 @@ import Regions from "../regions/regions.js"
 import "../forest/sketch.js"
 import * as langs from "../languages"
 
+
 class Weather extends Component {
   constructor(props) {
 
