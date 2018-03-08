@@ -1,32 +1,36 @@
 import React, {Component} from 'react';
-import {parseRegionData} from "./parser";
+import {parseRegionData, parseLocation} from "./parser";
 import "./regions.css";
 import {FormGroup, FormControl, ControlLabel} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as langs from "../languages"
 
 class Regions extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.timeoutVar;
 
     this.handleChange = this.handleChange.bind(this);
 
     this.state = {
-      value: '',
+      value: props.city || '',
       info: {
-        main: {},
+        main: null,
         cod: 200
       }
     };
 
-    this.parserInterval=setInterval(()=>{parseRegionData(this.state.value, this, this.props.apiKey)},1800*1000);
+    this.parserInterval = setInterval(() => {
+      parseRegionData(this.state.value, this, this.props.apiKey)
+    }, 1800 * 1000);
   }
 
-  //additional funcs
+  //--------------------additional funcs
   getValidationState() {
     if (this.state.info.list) {
+      //we memorize last City
+      localStorage.setItem('city', this.state.value);
       return 'success';
     } else {
       return 'error';
@@ -51,12 +55,16 @@ class Regions extends Component {
     }
   }
 
-  //Built--in functions
+  //----------------------Built--in functions
   componentDidMount() {
-    let city = this.props.city;
-    if (city) {
-      this.state.value = city;
-      parseRegionData(city, this, this.props.apiKey);
+    let city = this.state.value;
+
+    //if we want to automatically detect user's city based on his IP, we do this
+    if (city === "auto") {
+        parseLocation(this);
+    } else if (city) { //if we've got some city, then we do this
+      this.setState('value',city);
+      parseRegionData(this.state.value, this, this.props.apiKey);
     }
   }
 
@@ -65,7 +73,7 @@ class Regions extends Component {
     //first, we pass our data to app, so that it can draw weather
     this.passToParent();
     //then we pass wind to window, so that sketch can properly use wind force
-    if (this.state.info.main) {
+    if (this.state.info.main) { //we test like this, because it's not working with !=={}
       window.wind = this.state.info.wind.speed;
     }
     //and then we change title of our page, so that ppl could see temperature just by looking at page titile in tabs

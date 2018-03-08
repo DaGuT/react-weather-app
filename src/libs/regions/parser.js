@@ -7,3 +7,15 @@ export function parseRegionData(cityName,parent,apiKey) {
       console.log(json);
     });
 }
+
+export function parseLocation(parent) {
+  fetch('//freegeoip.net/json/?callback=').then(response => {
+          console.log(response);
+      return response.json();
+  }).then(json => {
+    if (parent.state.value!=json.city) parent.setState({'value':json.city});
+    parseRegionData(parent.state.value,parent,parent.props.apiKey); //yeah, that's not cool, however this is the simplest way
+    //WE DO THIS BECAUSE WE only call this function in component did mount :)
+    console.log(json);
+  });
+}

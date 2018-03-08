@@ -28,7 +28,7 @@ class Weather extends Component {
       //moreInfo is in state to let some1 add settings that will change state and auto trigger rerender :)
       moreInfo: this.props.moreInfo,
       info: {
-        main: {}
+        main: null
       }
     }
 
@@ -145,7 +145,9 @@ class Weather extends Component {
 
       <div id="settings-popup">
         <div className="bg-trans" onClick={this.settings}></div>
-        <Regions cb={this.getWeather} city="Tomsk" apiKey={this.props.apiKey}/></div>
+      {/* City supports city name(if you want to set some city by default) or "AUTO", which will always auto detect user's city by his IP or localStorage.getItem('city'), which will use last user's city */}
+      {/* <Regions cb={this.getWeather} city={localStorage.getItem('city') || "Tomsk"} apiKey={this.props.apiKey}/></div> */}
+      <Regions cb={this.getWeather} city={"auto"} apiKey={this.props.apiKey}/></div>
     </div>);
   }
 }
