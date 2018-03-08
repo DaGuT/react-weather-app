@@ -73,7 +73,7 @@ class Regions extends Component {
     //first, we pass our data to app, so that it can draw weather
     this.passToParent();
     //then we pass wind to window, so that sketch can properly use wind force
-    if (this.state.info.main) { //we test like this, because it's not working with !=={}
+    if (this.state.info.main) {
       window.wind = this.state.info.wind.speed;
     }
     //and then we change title of our page, so that ppl could see temperature just by looking at page titile in tabs
