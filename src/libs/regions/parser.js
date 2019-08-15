@@ -9,7 +9,7 @@ export function parseRegionData(cityName,parent,apiKey) {
 }
 
 export function parseLocation(parent) {
-  fetch('//freegeoip.net/json/?callback=').then(response => {
+  fetch('http://api.ipstack.com/check?access_key=724ea5e383b001b81c97e079143c1e5f').then(response => {
           console.log(response);
       return response.json();
   }).then(json => {
