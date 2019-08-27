@@ -68,7 +68,6 @@ class Regions extends Component {
     if (city === "auto") {
         parseLocation(this);
     } else if (city) { //if we've got some city, then we do this
-      this.setState('value',city);
       parseRegionData(this.state.value, this, this.props.apiKey);
     }
   }
@@ -78,8 +77,8 @@ class Regions extends Component {
     //first, we pass our data to app, so that it can draw weather
     this.passToParent();
     //then we pass wind to window, so that sketch can properly use wind force
-    if (this.state.info.main) {
-      window.wind = this.state.info.wind.speed;
+    if (this.state.info.list) {
+      window.wind = this.state.info.list[0].wind.speed;
     }
     //and then we change title of our page, so that ppl could see temperature just by looking at page titile in tabs
     let temp=this.state.info.list
@@ -95,13 +94,11 @@ class Regions extends Component {
   render() {
     //let weather = this.state.info? this.state.info.weather : 'loading';
     return (<div className="Regions">
-      <form>
         <FormGroup controlId="formBasicText" validationState={this.getValidationState()}>
           <ControlLabel>{langs[window.curLang].selectCityText}</ControlLabel>
           <FormControl type="text" value={this.state.value} placeholder="City name" onChange={this.handleChange}/>
           <FormControl.Feedback/>
         </FormGroup>
-      </form>
     </div>);
   }
 }

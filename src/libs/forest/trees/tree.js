@@ -1,20 +1,19 @@
-function Tree(x, y, width, height, sprite) {
+function Tree(x, y, width, height, sprite,p) {
   //this.pos={x:x,y:y};
-  var p5 = window.p5;
 
   //ATTENTION
   //All size and positions should also be calculated as relative so that upon resize they keep everything
-  this.pos = p5.createVector(x, y);
-  this.relPos = p5.createVector(x / p5.width, y / p5.height);
+  this.pos = p.createVector(x, y);
+  this.relPos = p.createVector(x / p.width, y / p.height);
 
   //tree Size
-  this.maxHeight = p5.height - 380 - 66;
+  this.maxHeight = p.height - 380 - 66;
   this.width = width;
   this.height = height;
   this.relHeight = height / this.maxHeight;
   this.relWidth = this.relHeight * 0.871;
   //tree image
-  this.sprite = p5.loadImage(sprite);
+  this.sprite = p.loadImage(sprite);
 
   //tree physics stuff
   this.acc = 0;
@@ -55,11 +54,11 @@ function Tree(x, y, width, height, sprite) {
 
   //in case of resize of canvas we also resize trees and update their positions
   this.resize = function() {
-    this.pos.x = this.relPos.x * p5.width;
-    this.pos.y = this.relPos.y * p5.height;
+    this.pos.x = this.relPos.x * p.width;
+    this.pos.y = this.relPos.y * p.height;
 
     //tree Size
-    this.maxHeight = p5.height - 380 - 66;
+    this.maxHeight = p.height - 380 - 66;
     this.height = Math.min(this.relHeight * this.maxHeight, this.maxHeight);
     this.width = this.height * 0.871;
   }
@@ -71,11 +70,11 @@ function Tree(x, y, width, height, sprite) {
     this.update();
 
     //then we make tranform of our tree
-    p5.shearX(this.angle);
+    p.shearX(this.angle);
     //we draw tranformed tree
-    p5.image(this.sprite, this.pos.x - p5.width / 2, this.pos.y - this.height, this.width, this.height);
+    p.image(this.sprite, this.pos.x - p.width / 2, this.pos.y - this.height, this.width, this.height);
     //we rever back our transformation so that it will not apply to other trees
-    p5.shearX(-this.angle);
+    p.shearX(-this.angle);
   }
 
 }

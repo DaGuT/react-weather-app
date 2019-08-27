@@ -4,9 +4,9 @@
   "private": true,
   "homepage": ".",
   "dependencies": {
-    "bootstrap": "^4.1.0",
+    "bootstrap": "^4.3.1",
     "favico.js": "^0.3.10",
-    "jquery": "^3.3.1",
+    "jquery": "^3.4.1",
     "p5": "^0.6.0",
     "react": "^16.3.2",
     "react-bootstrap": "^0.32.1",

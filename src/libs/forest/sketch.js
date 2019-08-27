@@ -1,48 +1,63 @@
 import p5 from "p5"
-import Forest from "./forest.js"
+import Forest from "./trees/forest.js"
+import LeafField from "./leafs/leafField.js"
 
-const sketch = (p5) => {
+//leaves for leaf field
+import _leaf01 from './leafs/01.svg';
+import _leaf02 from './leafs/02.svg';
+import _leaf03 from './leafs/03.svg';
+import _leaf04 from './leafs/04.svg';
 
-  //so that we can work with p5 later we change scope of p5
-  window.p5 = p5;
+const sketch = (p) => {
+
+  //so that we can work with p later we change scope of p
+  window.p = p;
+
+  let leafField,
+    forest;
+
+  p.preload = () => {
+    let leaf01 = p.loadImage(_leaf01);
+    let leaf02 = p.loadImage(_leaf02);
+    let leaf03 = p.loadImage(_leaf03);
+    let leaf04 = p.loadImage(_leaf04);
+
+    this.leafs = [leaf01, leaf02, leaf03, leaf04];
+
+    //forest = new Forest(5,p);
+    leafField = new LeafField(30, this.leafs, p);
+  }
 
   //this is just background color stuf
   let color = 1;
   let sign = 1;
 
-  //we create forest
-  let forest = new Forest(5);
-
   //basic setup
-  p5.setup = () => {
-    p5.angleMode(p5.DEGREES);
-    p5.createCanvas(p5.windowWidth, p5.windowHeight);
-    p5.background(255);
-    forest.create();
+  p.setup = () => {
+    //basic setup. White bg, full size canvas, degrees mode for rotation
+    p.angleMode(p.DEGREES);
+    p.createCanvas(p.windowWidth, p.windowHeight);
+    p.background(255);
+
+    //forest.create();
+    leafField.create();
   }
 
   //here we draw everything
-  p5.draw = () => {
+  p.draw = () => {
+    //only draw when tab is active
+    if (!document.hidden) {
+      p.background(255);
 
-    // //color changing stuff
-    // if (color >= 255) {
-    //   sign *= -1;
-    // }
-    // if (color <= 0) {
-    //   sign *= -1;
-    // }
-    // color += sign;
-    // p5.background(color);
-    p5.background(255);
-
-    //we redraw forest everyframe
-    forest.draw();
+      //we redraw forest everyframe forest.draw();
+      leafField.draw();
+    }
   }
 
   //in case of window resize we resize everything
-  p5.windowResized = () => {
-    p5.resizeCanvas(p5.windowWidth, p5.windowHeight);
-    forest.resize();
+  p.windowResized = () => {
+    p.resizeCanvas(p.windowWidth, p.windowHeight);
+    //forest.resize();
   }
 
 }

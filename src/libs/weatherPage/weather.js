@@ -146,9 +146,9 @@ class Weather extends Component {
 
       <div id="settings-popup">
         <div className="bg-trans" onClick={this.settings}></div>
-      {/* City supports city name(if you want to set some city by default) or "AUTO", which will always auto detect user's city by his IP or localStorage.getItem('city'), which will use last user's city */}
+      {/* City supports city name(if you want to set some city by default) or "auto", which will always auto detect user's city by his IP or localStorage.getItem('city'), which will use last user's city */}
       {/* <Regions cb={this.getWeather} city={localStorage.getItem('city') || "Tomsk"} apiKey={this.props.apiKey}/></div> */}
-      <Regions cb={this.getWeather} city={"auto"} apiKey={this.props.apiKey}/></div>
+      <Regions cb={this.getWeather} city={localStorage.getItem('city') || "McMurdo Station"} apiKey={this.props.apiKey}/></div>
     </div>);
   }
 }
